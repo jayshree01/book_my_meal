@@ -24,3 +24,12 @@ exports.view = (request,response)=>{
         return response.status(500).json(err);
     });
 }
+
+exports.availablePackages = (request,response) =>{
+    packageModel.find({quantity : {$gt : 0}})
+    .then(result=>{
+        return response.status(200).json(result);
+    }).catch(err=>{
+        return response.status(500).json(err);
+    });
+}

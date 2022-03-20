@@ -8,7 +8,9 @@ const DB = "mongodb+srv://mahak011001:hello%40123@cluster0.v5wwx.mongodb.net/boo
 const categoryRoute = require("./routes/categoryRoute");
 const packageRoute = require("./routes/packageRoute");
 const itemRoute = require("./routes/itemRoute");
-
+const cartRoute = require("./routes/cartRoutes");
+const orderRoute = require("./routes/orderRoute");
+app.set("view engine","ejs");
 mongoose.connect(DB,{
     useUnifiedTopology: true,
     useNewUrlParser:true
@@ -24,6 +26,8 @@ app.use("/user",userRoute);
 app.use("/category",categoryRoute);
 app.use("/package",packageRoute);
 app.use("/item",itemRoute);
+app.use("/cart",cartRoute);
+app.use("/order",orderRoute);
 app.listen(port,()=>{
     console.log("Server is running");
 });
