@@ -18,3 +18,13 @@ exports.view = (request,response) =>{
         return response.status(500).json(err);
     })
 }
+
+exports.viewOrders = (request,response) =>{
+    orderModel.find()
+    .then(result=>{
+        return response.status(200).json(result);
+    })
+    .catch(err=>{
+        return response.status(500).json(err);
+    })
+}

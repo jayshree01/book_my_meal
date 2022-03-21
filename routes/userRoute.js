@@ -14,4 +14,6 @@ router.post("/forget-password",userController.forgetPassword);
 router.get("/forget/:email",userController.forget);
 router.post("/change-password",userController.changePassword);
 router.post("/fav-foods",userController.viewFoods);
+router.post("/search",userController.search);
+router.post("/update",userController.update);
 module.exports = router;

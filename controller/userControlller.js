@@ -1,5 +1,7 @@
 const userModel = require("../model/userModel.js");
 const nodemailer = require("nodemailer");
+const packageModel = require("../model/packageModel");
+const itemModel = require("../model/itemModel");
 exports.signup = (request, response) => {
     userModel.create(request.body)
         .then(result => {
@@ -12,7 +14,6 @@ exports.signup = (request, response) => {
 exports.signin = (request, response) => {
     userModel.findOne(request.body).populate("favItems").populate("favPackages")
         .then(result => {
-            console.log(result)
             if(result){
             if (result.isBlocked == false) {
                 if (result.isVerified)
@@ -193,3 +194,32 @@ exports.viewFoods = (request,response) =>{
     });
 }
 
+exports.search = (request,response) =>{
+    packageModel.find({name : request.body.name})
+    .then(package=>{
+        itemModel.find({name : request.body.name})
+        .then(item=>{
+            if(package.length)
+                return response.status(200).json({package : package});
+            return response.status(200).json({item : item});
+        }).catch(err=>{
+            return response.status(500).json(err);
+        })
+    }).catch(err=>{
+        return response.status(500).json(err);
+    });
+}
+
+exports.update = (request,response) =>{
+    userModel.updateOne({_id : request.body.id},{
+        $set : {
+            name : request.body.name,
+            email : request.body.email,
+            mobile : request.body.mobile
+        }
+    }).then(result=>{
+        return response.status(200).json(result);
+    }).catch(err=>{
+        return response.status(500).json(err);
+    })
+}
