@@ -14,6 +14,8 @@ var upload=multer({storage: storage});
 
 router.post("/add",upload.single("image"),packageController.add);
 router.get("/view",packageController.view);
+router.post("/edit",upload.single("image"),packageController.edit);
+router.delete("/delete",packageController.delete);
 router.get("/available-packages",packageController.availablePackages);
 router.get("/today-meal-option",packageController.todayMealOption);
 

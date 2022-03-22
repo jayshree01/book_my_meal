@@ -5,7 +5,7 @@ exports.add = (request,response)=>{
         name : request.body.name,
         price : request.body.price,
         quantity : request.body.quantity,
-        image : "http://localhost:"+port+"/images/" + request.file.filename,
+        image : "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
         day : request.body.day,
         catId : request.body.catId
     }).then(result=>{
@@ -17,7 +17,32 @@ exports.add = (request,response)=>{
 }
 
 exports.view =  (request,response)=>{
-    itemModel.find(request.body)
+    itemModel.find()
+    .then(result=>{
+        return response.status(200).json(result);
+    }).catch(err=>{
+        return response.status(500).json(err);
+    });
+}
+
+exports.edit = (request,response)=>{
+    itemModel.updateOne({_id:request.body.id},{
+        $set : {name : request.body.name,
+        price : request.body.price,
+        quantity : request.body.quantity,
+        image : "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
+        day : request.body.day,
+        catId : request.body.catId}
+    }).then(result=>{
+        return response.status(201).json(result);
+    })
+    .catch(err=>{
+        return response.status(500).json(err);
+    });
+}
+
+exports.delete = (request,response)=>{
+    itemModel.deleteOne({_id : request.body.id})
     .then(result=>{
         return response.status(200).json(result);
     }).catch(err=>{

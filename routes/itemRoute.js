@@ -15,6 +15,7 @@ var upload=multer({storage: storage});
 
 router.post("/add",upload.single("image"),itemController.add);
 router.get("/view",itemController.view);
-
+router.delete("/delete",itemController.delete);
+router.post("/edit",upload.single("image"),itemController.edit);
 
 module.exports = router;

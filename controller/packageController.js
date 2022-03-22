@@ -6,7 +6,7 @@ exports.add = (request, response) => {
     packageModel.create({
         name: request.body.name,
         price: request.body.price,
-        image: "http://localhost:" + port + "/images/" + request.file.filename,
+        image: "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
         description: request.body.description,
         quantity: request.body.quantity,
         day: request.body.day,
@@ -65,5 +65,31 @@ exports.todayMealOption = (request, response) => {
     .catch(err=>{
         response.status(500).json(err);
     });
+}
 
+exports.edit = (request,response) =>{
+    packageModel.updateOne({_id : request.body.id},{
+        $set : {
+            name : request.body.name,
+            price : request.body.price,
+            image : "https://book-my-meal-by-mahak.herokuapp.com/images/"+request.file.filename,
+            description : request.body.description,
+            quantity : request.body.quantity,
+            day : request.body.day,
+            catId : request.body.catId
+        }
+    }).then(result=>{
+        return response.status(200).json(result);
+    }).catch(err=>{
+        return response.status(500).json(err);
+    })
+}
+
+exports.delete = (request,response)=>{
+    packageModel.deleteOne({_id : request.body.id})
+    .then(result=>{
+        return response.status(200).json(result);
+    }).catch(err=>{
+        return response.status(500).json(err);
+    });
 }
