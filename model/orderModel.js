@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
     userId : Schema.Types.ObjectId,
     date : {
         type : Date,
-        default : Date.now
+        default : Date.now,
     },
     address : String,
     mobile : String,
