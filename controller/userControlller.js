@@ -19,18 +19,20 @@ exports.signin = (request, response) => {
                 if (result.isVerified)
                     return response.status(200).json(result);
                 else {
-                    let sender = "mahak01agrawal@gmail.com";
-                    let reciever = result.email;
-                    let subject = "Mail Verification";
-                    let message = "https://book-my-meal-by-mahak.herokuapp.com/user/verifyByEmail/" + result._id;
-
-                    const transporter = nodemailer.createTransport({
-                        service: 'gmail',
+                    var smtpConfig =  {
+                        service: 'smtp.office365.com',
+                        host: 'smtp.office365.com',
+                        port: 587,
+                        starttls: {
+                            enable: true
+                        },
+                        secureConnection: true,
                         auth: {
-                            user: sender,
+                            user: 'mahak01agrawal@gmail.com',
                             pass: '@123!mahak'
                         }
-                    });
+                    }
+                    const transporter = nodemailer.createTransport(smtpConfig);
 
                     // email options
                     let mailOptions = {
