@@ -22,13 +22,13 @@ exports.signin = (request, response) => {
                     let sender = "mahak01agrawal@gmail.com";
                     let reciever = result.email;
                     let subject = "Mail Verification";
-                    let message = "https://book-my-meal-by-mahak.herokuapp.com/user/verifyByEmail/" + result._id;
+                    let message = "https://book-my-meal-api.herokuapp.com/user/verifyByEmail/" + result._id;
 
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
                             user: sender,
-                            pass: '@123!mahak'
+                            pass: 'password'
                         }
                     });
 
@@ -136,13 +136,13 @@ exports.forgetPassword = (request, response) => {
     let sender = "mahak01agrawal@gmail.com";
     let reciever = request.body.email;
     let subject = "Change Password";
-    let message = "https://book-my-meal-by-mahak.herokuapp.com/user/forget/"+ request.body.email;
+    let message = "https://book-my-meal-api.herokuapp.com/user/forget/"+ request.body.email;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: sender,
-            pass: '@123!mahak'
+            pass: 'password'
         }
     });
 

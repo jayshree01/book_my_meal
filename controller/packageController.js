@@ -6,7 +6,7 @@ exports.add = (request, response) => {
     packageModel.create({
         name: request.body.name,
         price: request.body.price,
-        image: "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
+        image: "https://book-my-meal-api.herokuapp.com/images/" + request.file.filename,
         description: request.body.description,
         quantity: request.body.quantity,
         day: request.body.day,
@@ -72,7 +72,7 @@ exports.edit = (request,response) =>{
         $set : {
             name : request.body.name,
             price : request.body.price,
-            image : "https://book-my-meal-by-mahak.herokuapp.com/images/"+request.file.filename,
+            image : "https://book-my-meal-api.herokuapp.com/images/"+request.file.filename,
             description : request.body.description,
             quantity : request.body.quantity,
             day : request.body.day,

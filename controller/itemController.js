@@ -5,7 +5,7 @@ exports.add = (request,response)=>{
         name : request.body.name,
         price : request.body.price,
         quantity : request.body.quantity,
-        image : "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
+        image : "https://book-my-meal-api.herokuapp.com/images/" + request.file.filename,
         day : request.body.day,
         catId : request.body.catId
     }).then(result=>{
@@ -30,7 +30,7 @@ exports.edit = (request,response)=>{
         $set : {name : request.body.name,
         price : request.body.price,
         quantity : request.body.quantity,
-        image : "https://book-my-meal-by-mahak.herokuapp.com/images/" + request.file.filename,
+        image : "https://book-my-meal-api.herokuapp.com/images/" + request.file.filename,
         day : request.body.day,
         catId : request.body.catId}
     }).then(result=>{

@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 exports.add = (request,response)=>{
     categoryModel.create({
         name : request.body.name,
-        image : "https://book-my-meal-by-mahak.herokuapp.com/images/"+request.file.filename
+        image : "https://book-my-meal-api.herokuapp.com/images/"+request.file.filename
     }).then(result=>{
         return response.status(200).json(result);
     }).catch(err=>{
@@ -25,7 +25,7 @@ exports.edit = (request,response) =>{
     categoryModel.updateOne({_id : request.body.id},{
         $set : {
             name : request.body.name,
-            image :"https://book-my-meal-by-mahak.herokuapp.com/images/" +  request.file.filename
+            image :"https://book-my-meal-api.herokuapp.com/images/" +  request.file.filename
         }
     }).then(result=>{
         return response.status(200).json(result);
